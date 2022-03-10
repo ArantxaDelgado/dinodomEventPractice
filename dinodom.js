@@ -56,10 +56,42 @@ pintar.addEventListener ("click", function () {
 // Si la variable de estado es "blue", debemos pintar el cielo a blanco; cambiar el texto del botón a "Cielo Azul", y actualizar la variable de estado a "white"
 
 // Ejercicio 2: Poner huevo. Al hacer click en el botón poner huevo, se crea un nodo del tipo 'img' y hay que añadirlo como hijo del contenedor #dinoseto
-let image = document.createElement('img')
-image.src  = 'img/dinohuevo.png'
+document.querySelector("#nuevo-huevo").addEventListener("click", function () {
 
-let nuevoHuevo = document.querySelector("#nuevo-huevo")
-nuevoHuevo.addEventListener("click" , function(){
-    document.querySelector('#dinoseto').appendChild(image)
+    let huevo = document.createElement('img'); // crea un objeto del tipo HTMLNodeImg
+    huevo.src = "./img/dinohuevo.png"; // actuliza el atributo/propiedad del objeto 
+    huevo.id = Math.random();
+
+    huevo.addEventListener("dblclick", function () {
+        console.log("Has hecho dbl click encima de un huevo");
+        console.log(event.target.id)
+
+        event.target.src = "./img/eclosion.png"
+    })
+
+    document.querySelector("#dinoseto").appendChild(huevo);
+});
+
+
+// Ejercicio 3- MEGA BONUS (es necesario utilizar el objeto evento  que mañana): Al hacer doble click en el huevo, hacer eclosionar.
+// Asociar evento 'dblclick' cada vez que creais una 'img' del huevo
+// en la función del 'dblclick' cambiar el atributo .src por la nueva imagen
+
+//----------------------------------------------------------------
+
+//Queremos mostrar por consola las teclas que el usuario pulsa
+document.body.addEventListener("keyup", function (event) {
+    console.log("Tecla pulsada!" + event.key);
+})
+
+// Recorrer todas las <p> y les voy añadir un evento click
+
+let allParagraphs = document.querySelectorAll("p");
+
+allParagraphs.forEach(nodo => {
+    // asociar un evento click en cada uno de los nodos. Quiero mostrar por consola el .textContent de cada nodo cuando hagamos click en el
+
+    nodo.addEventListener("click", function (event) {
+        console.log(event.target.textContent);
+    });
 });
